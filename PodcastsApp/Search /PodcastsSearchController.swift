@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import Alamofire
 
 class PodcastsSearchController: UITableViewController, UISearchBarDelegate {
+    
+    fileprivate var timer: Timer?
     
     let podcasts = [
         Podcast(name: "Lets Build That App", artistName: "Brian Voong"),
@@ -25,6 +28,7 @@ class PodcastsSearchController: UITableViewController, UISearchBarDelegate {
         
         setupSearchBar()
         setupTableView()
+        
     }
     
     //MARK:- Setup Work
@@ -39,6 +43,22 @@ class PodcastsSearchController: UITableViewController, UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print(searchText)
         // later implement Alamofire to search iTunes API
+        timer?.invalidate()
+        timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { (_) in
+            let updatingString = searchText.replacingOccurrences(of: " ", with: "+", options: .literal, range: nil).lowercased()
+            let url = "https://itunes.apple.com/search?term=\(updatingString)"
+            Alamofire.request(url).responseData { (dataResponse) in
+                if let err = dataResponse.error {
+                    print("Failed to contact yahoo", err)
+                    return
+                }
+                
+                guard let data = dataResponse.data else { return }
+                let dummyString = String(data: data, encoding: .utf8)
+                print(dummyString ?? "")
+            }
+        })
+        
     }
     
     fileprivate func setupTableView() {
