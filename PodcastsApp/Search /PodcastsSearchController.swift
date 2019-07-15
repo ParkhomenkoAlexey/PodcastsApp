@@ -41,37 +41,10 @@ class PodcastsSearchController: UITableViewController, UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
    
-        timer?.invalidate()
-        timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { (_) in
-            
-            let updatingString = searchText.replacingOccurrences(of: " ", with: "+", options: .literal, range: nil).lowercased()
-            
-//            let url = "https://itunes.apple.com/search?term=\(updatingString)"
-            let url = "https://itunes.apple.com/search"
-            let parameters = ["term": searchText, "media": "software"]
-
-            // encoding - меняет пробелы на амперсанты
-            Alamofire.request(url, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: nil).responseData { (dataResponse) in
-                if let err = dataResponse.error {
-                    print("Failed to contact yahoo", err)
-                    return
-                }
-                
-                guard let data = dataResponse.data else { return }
-                let dummyString = String(data: data, encoding: .utf8)
-                //                print(dummyString ?? "")
-                
-                do {
-                    let searchResult = try JSONDecoder().decode(SearchResults.self, from: data)
-                    print("searchResult:\(searchResult)")
-                    
-                    self.podcasts = searchResult.results
-                    self.tableView.reloadData()
-                } catch let decodeErr {
-                    print("Failed to decode:", decodeErr)
-                }
-            }
-        }) // timer
+        APIService.shared.fetchPodcasts(searchText: searchText) { (searchResults) in
+            self.podcasts = searchResults?.results ?? []
+            self.tableView.reloadData()
+        }
     }
     
     fileprivate func setupTableView() {

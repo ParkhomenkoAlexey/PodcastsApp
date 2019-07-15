@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -17,6 +17,7 @@
 		F0480A7122CAA3BF009BAB74 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0480A7022CAA3BF009BAB74 /* MainTabBarController.swift */; };
 		F04E2AAE22D2774300FCB41F /* PodcastsSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04E2AAD22D2774300FCB41F /* PodcastsSearchController.swift */; };
 		F04E2AB122D277E100FCB41F /* PodcastResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04E2AB022D277E100FCB41F /* PodcastResponse.swift */; };
+		F070E8EA22DB377E00859127 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F070E8E922DB377E00859127 /* APIService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		F0480A7022CAA3BF009BAB74 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		F04E2AAD22D2774300FCB41F /* PodcastsSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastsSearchController.swift; sourceTree = "<group>"; };
 		F04E2AB022D277E100FCB41F /* PodcastResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastResponse.swift; sourceTree = "<group>"; };
+		F070E8E922DB377E00859127 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,7 +64,6 @@
 				B193F15962F762739AE4F474 /* Pods-PodcastsApp.debug.xcconfig */,
 				2ABD5E5825D5A695CB5143C8 /* Pods-PodcastsApp.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -90,6 +91,7 @@
 				F0480A5C22CAA373009BAB74 /* AppDelegate.swift */,
 				F0480A5E22CAA373009BAB74 /* SceneDelegate.swift */,
 				F0480A7022CAA3BF009BAB74 /* MainTabBarController.swift */,
+				F070E8EB22DB378300859127 /* API */,
 				F04E2AAF22D277C900FCB41F /* Models */,
 				F0D9B37922D270AC00D6822E /* Search  */,
 				F0480A6022CAA373009BAB74 /* ViewController.swift */,
@@ -107,6 +109,14 @@
 				F04E2AB022D277E100FCB41F /* PodcastResponse.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		F070E8EB22DB378300859127 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				F070E8E922DB377E00859127 /* APIService.swift */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 		F0D9B37922D270AC00D6822E /* Search  */ = {
@@ -233,6 +243,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F0480A6122CAA373009BAB74 /* ViewController.swift in Sources */,
+				F070E8EA22DB377E00859127 /* APIService.swift in Sources */,
 				F04E2AB122D277E100FCB41F /* PodcastResponse.swift in Sources */,
 				F0480A5D22CAA373009BAB74 /* AppDelegate.swift in Sources */,
 				F0480A7122CAA3BF009BAB74 /* MainTabBarController.swift in Sources */,
