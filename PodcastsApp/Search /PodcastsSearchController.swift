@@ -13,10 +13,7 @@ class PodcastsSearchController: UITableViewController, UISearchBarDelegate {
     
     fileprivate var timer: Timer?
     
-    var podcasts = [
-        Podcast(trackName: "Lets Build That App", artistName: "Brian Voong"),
-        Podcast(trackName: "Some Podcast", artistName: "Some Author"),
-    ]
+    var podcasts = [Podcast]()
     
     let cellId = "cellId"
     
@@ -51,9 +48,24 @@ class PodcastsSearchController: UITableViewController, UISearchBarDelegate {
 //        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
         let nib = UINib(nibName: "PodcastCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: cellId)
+        tableView.tableFooterView = UIView()
+        
     }
     
     //MARK:- UITableView
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let label = UILabel()
+        label.text = "Please enter a Search Term"
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+        return label
+
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 250
+    }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return podcasts.count
@@ -66,9 +78,6 @@ class PodcastsSearchController: UITableViewController, UISearchBarDelegate {
         cell.podcast = podcast
         
         
-//        cell.textLabel?.text = "\(podcast.trackName ?? "")\n\(podcast.artistName ?? "")"
-//        cell.textLabel?.numberOfLines = 2
-//        cell.imageView?.image = #imageLiteral(resourceName: "appicon")
         
         return cell
     }
