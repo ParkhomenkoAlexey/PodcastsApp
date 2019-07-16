@@ -63,8 +63,16 @@ class PodcastsSearchController: UITableViewController, UISearchBarDelegate {
 
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let episodesController = EpisodesController()
+        episodesController.podcast = podcasts[indexPath.row]
+        navigationController?.pushViewController(episodesController, animated: true)
+    }
+    
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 250
+        // ternary operator
+        return self.podcasts.count > 0 ? 0 : 250
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
